@@ -3,8 +3,8 @@ package br.com.erudio.unit.test.mock;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.erudio.Model.Person;
-import br.com.erudio.data.vo.v1.PersonVO;
+import br.com.erudio.data.model.Person;
+import br.com.erudio.data.vo.PersonVO;
 
 public class MockPerson {
 

@@ -1,4 +1,4 @@
-package br.com.erudio.Model;
+package br.com.erudio.data.model;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package br.com.erudio.data.vo.v1;
+package br.com.erudio.data.vo;
 
 import java.io.Serializable;
 
@@ -103,4 +103,5 @@ public class PersonVO implements Serializable{
 			return false;
 		return true;
 	}
+
 }

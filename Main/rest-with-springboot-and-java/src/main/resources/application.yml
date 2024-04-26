@@ -5,6 +5,6 @@ spring:
     password: root123
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       show-sql: false
