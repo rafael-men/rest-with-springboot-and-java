@@ -1,10 +1,15 @@
 spring:
   datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/rest_api?useTimezone=true&serverTimezone=UTC
     username: root
     password: root123
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     properties:
-      show-sql: false
+      show-sql: falsety-inclusion=non_null1
+spring-doc:
+  pathsToMatch: /api/**/v1/**
+  swagger-ui:
+    use-root-path: true

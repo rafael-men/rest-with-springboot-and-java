@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>20</java.version>
 		<dozer.version>6.4.0</dozer.version>
+		<springdoc.version>2.0.2</springdoc.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -43,6 +44,12 @@
 			<artifactId>jackson-dataformat-yaml</artifactId>
 		</dependency>
 
+		
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>com.mysql</groupId>
