@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.erudio.data.vo.BookVO;
 import br.com.erudio.services.BookServices;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Api(tags = "BookEndpoint") 
+@Tag(name = "BookEndpoint", description = "REST API for Books")
 @RestController
 @RequestMapping("/api/book/v1")
 public class BookController {
@@ -29,20 +29,17 @@ public class BookController {
 	@Autowired
 	private BookServices service;
 	
-	@ApiOperation(value = "Find all books" )
+	@Operation(summary = "Find all books")
 	@GetMapping(produces = { "application/json", "application/xml", "application/x-yaml" })
 	public List<BookVO> findAll() {
-		List<BookVO> books =  service.findAll();
-		books
-			.stream()
-			.forEach(p -> p.add(
-					linkTo(methodOn(BookController.class).findById(p.getKey())).withSelfRel()
-				)
-			);
+		List<BookVO> books = service.findAll();
+		books.stream().forEach(p -> p.add(
+			linkTo(methodOn(BookController.class).findById(p.getKey())).withSelfRel()
+		));
 		return books;
 	}	
 	
-	@ApiOperation(value = "Find a specific book by your ID" )
+	@Operation(summary = "Find a specific book by ID")
 	@GetMapping(value = "/{id}", produces = { "application/json", "application/xml", "application/x-yaml" })
 	public BookVO findById(@PathVariable("id") Long id) {
 		BookVO bookVO = service.findById(id);
@@ -50,7 +47,7 @@ public class BookController {
 		return bookVO;
 	}	
 	
-	@ApiOperation(value = "Create a new book")
+	@Operation(summary = "Create a new book")
 	@PostMapping(produces = { "application/json", "application/xml", "application/x-yaml" }, 
 			consumes = { "application/json", "application/xml", "application/x-yaml" })
 	public BookVO create(@RequestBody BookVO book) {
@@ -59,7 +56,7 @@ public class BookController {
 		return bookVO;
 	}
 	
-	@ApiOperation(value = "Update a specific book")
+	@Operation(summary = "Update a specific book")
 	@PutMapping(produces = { "application/json", "application/xml", "application/x-yaml" }, 
 			consumes = { "application/json", "application/xml", "application/x-yaml" })
 	public BookVO update(@RequestBody BookVO book) {
@@ -68,7 +65,7 @@ public class BookController {
 		return bookVO;
 	}	
 	
-	@ApiOperation(value = "Delete a specific book by your ID")
+	@Operation(summary = "Delete a specific book by ID")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		service.delete(id);
