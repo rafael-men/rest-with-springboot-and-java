@@ -27,7 +27,8 @@ A API oferece as seguintes funcionalidades:
 
 1. Clone este repositório:
 
- git clone https://github.com/seuusuario/spring-boot-api.git
+ git clone https://github.com/rafael-men/rest-with-springboot-and-java
+.git
 
 2. Navegue até o diretório do projeto
 
