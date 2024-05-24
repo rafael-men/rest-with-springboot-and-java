@@ -47,6 +47,13 @@ public class PersonServices {
 		return vo;
 	}	
 	
+	public PersonVO disablePerson(Long id) {
+
+		var entity = repository.disablePerson(id)
+				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+		return DozerConverter.parseObject(entity, PersonVO.class);
+	}
+	
 	public void delete(Long id) {
 		Person entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));

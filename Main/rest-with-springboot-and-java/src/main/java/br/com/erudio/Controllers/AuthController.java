@@ -22,7 +22,7 @@ import br.com.erudio.security.AccountCredentialsVO;
 import br.com.erudio.security.jwt.JwtTokenProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
+ 
 @Api(tags = "AuthenticationEndpoint") 
 @RestController
 @RequestMapping("/auth")
