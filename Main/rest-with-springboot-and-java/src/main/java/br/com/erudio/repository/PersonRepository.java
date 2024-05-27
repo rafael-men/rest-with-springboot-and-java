@@ -6,15 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import br.com.erudio.data.model.User;
-
-
+import br.com.erudio.data.model.Person;
 
 @Repository
-public interface PersonRepository extends JpaRepository<br.com.erudio.data.model.Person,Long>{
+public interface PersonRepository extends JpaRepository<Person, Long>{
 	
 	@Modifying
-	@Query("UPDATE Person p p.enabled = false WHERE p.id = :id")
-    User disablePerson(@Param("id") Long id);
-
+	@Query("UPDATE Person p SET p.enabled = false WHERE p.id =:id")
+	void disablePersons(@Param("id") Long id);
 }
