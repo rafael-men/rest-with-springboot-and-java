@@ -2,7 +2,7 @@
 
 <hr>
 
-Este é um projeto de exemplo de uma API RESTful construída com Spring Boot. A API oferece funcionalidades básicas para gerenciamento de recursos.
+Este é um projeto de exemplo de uma API RESTful complteta construída com Spring Boot. A API oferece funcionalidades básicas para gerenciamento de recursos.
 
 ## Tecnologias Utilizadas
 
@@ -32,20 +32,11 @@ A API oferece as seguintes funcionalidades:
 
 2. Navegue até o diretório do projeto
 
-3. Execute a aplicação usando Maven:
-
-mvn spring-boot:run
-
+3. Execute a aplicação usando o Boot Dashboard.
 
 ## Contribuindo
 
-Sinta-se à vontade para contribuir com novas funcionalidades, correções de bugs ou melhorias na documentação. Siga estas etapas:
-
-1. Fork este repositório
-2. Crie um branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Faça commit de suas alterações (`git commit -am 'Adicionando nova feature'`)
-4. Faça push para o branch (`git push origin feature/nova-feature`)
-5. Crie um novo Pull Request
+Sinta-se à vontade para contribuir com novas funcionalidades, correções de bugs ou melhorias na documentação.
 
 ## Autor
 
