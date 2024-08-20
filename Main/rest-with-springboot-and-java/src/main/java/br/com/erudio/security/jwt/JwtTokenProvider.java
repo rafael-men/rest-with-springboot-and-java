@@ -4,6 +4,8 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,8 +23,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import br.com.erudio.security.TokenVO;
 import br.com.erudio.exceptions.InvalidJwtAuthenticationException;
 
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
+
 
 
 @Service

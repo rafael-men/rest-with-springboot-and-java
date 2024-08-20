@@ -4,44 +4,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 import br.com.erudio.security.jwt.JwtConfigurer;
 import br.com.erudio.security.jwt.JwtTokenProvider;
 
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
-	
+@EnableWebSecurity
+public class SecurityConfig {
+
 	@Autowired
 	private JwtTokenProvider tokenProvider;
-	
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-		return bCryptPasswordEncoder;
-	}
-	
-	@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
-	
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.httpBasic().disable()
-			.csrf().disable()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and()
-				.authorizeRequests()
-				.antMatchers("/auth/signin", "/api-docs/**", "/swagger-ui.html**").permitAll()
-				.antMatchers("/api/**").authenticated()
-				.antMatchers("/users").denyAll()
-			.and()
-			.apply(new JwtConfigurer(tokenProvider));
+		return new BCryptPasswordEncoder();
 	}
 
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
+	}
+
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		http
+				.httpBasic().disable()
+				.csrf().disable()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and()
+				.authorizeHttpRequests(authorize -> authorize
+						.requestMatchers("/auth/signin", "/api-docs/**", "/swagger-ui.html**").permitAll()
+						.requestMatchers("/api/**").authenticated()
+						.requestMatchers("/users").denyAll()
+				)
+				.apply(new JwtConfigurer(tokenProvider));
+
+		return http.build();
+	}
 }
