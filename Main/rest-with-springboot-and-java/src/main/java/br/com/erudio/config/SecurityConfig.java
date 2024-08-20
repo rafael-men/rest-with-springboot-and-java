@@ -18,8 +18,12 @@ import br.com.erudio.security.jwt.JwtTokenProvider;
 @EnableWebSecurity
 public class SecurityConfig {
 
+	private final JwtTokenProvider tokenProvider;
+
 	@Autowired
-	private JwtTokenProvider tokenProvider;
+	public SecurityConfig(JwtTokenProvider tokenProvider) {
+		this.tokenProvider = tokenProvider;
+	}
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -42,8 +46,7 @@ public class SecurityConfig {
 						.requestMatchers("/auth/signin", "/api-docs/**", "/swagger-ui.html**").permitAll()
 						.requestMatchers("/api/**").authenticated()
 						.requestMatchers("/users").denyAll()
-				)
-				.apply(new JwtConfigurer(tokenProvider));
+				).apply(new JwtConfigurer(tokenProvider));
 
 		return http.build();
 	}
