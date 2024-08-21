@@ -13,6 +13,7 @@ Este é um projeto de exemplo de uma API RESTful complteta construída com Sprin
 - Maven
 - Hibernate
 - Flyway
+- Docker
 
 
 ## Funcionalidades
@@ -27,14 +28,17 @@ A API oferece as seguintes funcionalidades:
 
 1. Clone este repositório:
 
- git clone https://github.com/rafael-men/rest-with-springboot-and-java
-.git
+ git clone https://github.com/rafael-men/rest-with-springboot-and-java.git
+
+<hr>
 
 2. Navegue até o diretório do projeto
 
-3. Execute a aplicação usando o Docker:
+2.1 Execute a aplicação usando o Docker:
 
 - docker compose up -d --build  para criar o container
+
+<hr>
 
 ## Contribuindo
 
