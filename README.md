@@ -32,7 +32,9 @@ A API oferece as seguintes funcionalidades:
 
 2. Navegue até o diretório do projeto
 
-3. Execute a aplicação usando o Boot Dashboard.
+3. Execute a aplicação usando o Docker:
+
+- docker compose up -d --build  para criar o container
 
 ## Contribuindo
 
