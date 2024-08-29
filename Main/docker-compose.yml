@@ -1,12 +1,12 @@
 version: "3.9"
 services:
   db:
-    image: mysql:8.4.2
+    image: mysql:8.0.34
     restart: always
     environment:
       TZ: America/Sao_Paulo
       MYSQL_ROOT_PASSWORD: root123
-      MYSQL_USER: root
+      MYSQL_USER: docker
       MYSQL_PASSWORD: root123
       MYSQL_DATABASE: rest_api
       MYSQL_ROOT_HOST: '%'
@@ -14,6 +14,10 @@ services:
       - 3309:3306
     networks:
       - rafa-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
 
   rest_api:
     build:
@@ -21,16 +25,25 @@ services:
       dockerfile: Dockerfile
     container_name: rest_api_container
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - rafa-network
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/rest_api?useTimezone=true&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_USERNAME: docker
       SPRING_DATASOURCE_PASSWORD: root123
     ports:
       - 8080:8080
-    entrypoint: ["java", "-jar", "/app.jar"]
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        echo "Waiting for MySQL to be ready..."
+        until nc -z db 3306; do
+          sleep 2
+        done
+        java -jar /app.jar
 
 networks:
   rafa-network:

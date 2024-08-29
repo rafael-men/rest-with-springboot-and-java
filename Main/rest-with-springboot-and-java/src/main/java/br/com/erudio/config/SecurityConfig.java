@@ -1,6 +1,5 @@
 package br.com.erudio.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,7 +19,6 @@ public class SecurityConfig {
 
 	private final JwtTokenProvider tokenProvider;
 
-	@Autowired
 	public SecurityConfig(JwtTokenProvider tokenProvider) {
 		this.tokenProvider = tokenProvider;
 	}
@@ -43,10 +41,8 @@ public class SecurityConfig {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.authorizeHttpRequests(authorize -> authorize
-						.requestMatchers("/auth/signin", "/api-docs/**", "/swagger-ui.html**").permitAll()
-						.requestMatchers("/api/**").authenticated()
-						.requestMatchers("/users").denyAll()
-				).apply(new JwtConfigurer(tokenProvider));
+						.anyRequest().permitAll()
+				);
 
 		return http.build();
 	}
