@@ -6,8 +6,6 @@ services:
     environment:
       TZ: America/Sao_Paulo
       MYSQL_ROOT_PASSWORD: root123
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: root123
       MYSQL_DATABASE: rest_api
       MYSQL_ROOT_HOST: '%'
     ports:
@@ -15,9 +13,11 @@ services:
     networks:
       - rafa-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      retries: 5
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 30s
+      retries: 10
+      start_period: 60s
+
 
   rest_api:
     build:
@@ -31,7 +31,7 @@ services:
       - rafa-network
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/rest_api?useTimezone=true&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: docker
+      SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root123
     ports:
       - 8080:8080
