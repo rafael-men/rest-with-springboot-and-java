@@ -1,31 +1,31 @@
 import React,{useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import './index.css'
 import logo from '../../assets/final_logo.png'
 import api from '../../services/api'
 
 const Login = () => {
 
-  const [username,setUsername] = useState()
-  const [password,setPassword] = useState()
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const history = useHistory()
+  const navigate = useNavigate();
 
   async function login(e) {
-    e.preventDefault()
+    e.preventDefault();
     const data = {
       username,
-      password
-    }
+      password,
+    };
 
-    try{
-      const response = await api.post('auth/signin',data)
-      localStorage.setItem('username',username)
-      localStorage.setItem('accessToken',response.data.token)
+    try {
+      const response = await api.post('auth/signin', data);
+      localStorage.setItem('username', username);
+      localStorage.setItem('accessToken', response.data.token);
 
-      history.push('/book')
-    }catch (err) {
-      alert("Login Failed")
+      navigate('/book');
+    } catch (err) {
+      alert('Login Failed');
     }
   }
 
