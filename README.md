@@ -36,7 +36,7 @@ A API oferece as seguintes funcionalidades:
 
 2.1 Execute a aplicação usando o Docker:
 
-- docker compose up -d --build  para criar o container
+- docker compose up -d --build  para criar os contêineres do banco de dados e da aplicação
 
 <hr>
 
