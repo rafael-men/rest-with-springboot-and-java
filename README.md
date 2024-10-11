@@ -32,21 +32,15 @@ A API oferece as seguintes funcionalidades:
 
 <hr>
 
-2. Navegue até o diretório do projeto
+2. Navegue até o diretório do projeto e execute a aplicação acessando a no link localhost:8080/swagger-ui.html
 
 2.1 Execute a aplicação usando o Docker:
 
-- docker compose up -d --build  para criar os contêineres do banco de dados e da aplicação
+- docker compose up -d --build  para criar os contêineres do banco de dados e da aplicação.
 
 <hr>
 
-## Contribuindo
 
-Sinta-se à vontade para contribuir com novas funcionalidades, correções de bugs ou melhorias na documentação.
-
-## Autor
-
-[rafael-men](https://github.com/rafael-men)
 
 
 
