@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/rest_api?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: admin123
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  jackson:
+    default-property-inclusion: NON_NULL
+
+flyway:
+  url: jdbc:mysql://localhost:3306/
+  schemas: rest_api
+  user: root
+  password: root123

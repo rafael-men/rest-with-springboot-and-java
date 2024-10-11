@@ -10,8 +10,9 @@ public class OpenApiConfig {
 	@Bean
 	public GroupedOpenApi api() {
 		return GroupedOpenApi.builder()
-				.group("v1")
+				.group("v0.0.1")
 				.packagesToScan("br.com.erudio")
+				.displayName("API REST com SpringBoot e MySQL")
 				.build();
 	}
 }
